@@ -1,4 +1,4 @@
-const keys = require('./keys');
+const { keys } = require('./keys');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -57,6 +57,6 @@ app.post('/values', async (req, res) => {
   res.send({ working: true });
 });
 
-app.listen(500, (err) => {
+app.listen(5000, (err) => {
   console.log('Listening');
 });

@@ -1,5 +1,5 @@
 const redis = require('redis');
-const keys = require('./keys');
+const { keys } = require('./keys');
 
 const redisClient = redis.createClient({
   host: keys.redisHost,
@@ -13,7 +13,7 @@ const fib = (index) => {
   if (index < 2) {
     return 1;
   }
-  return fib(index - 1) + fix(index - 2);
+  return fib(index - 1) + fib(index - 2);
 }
 
 sub.on('message', (channel, message) => {
