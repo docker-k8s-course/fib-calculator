@@ -4,21 +4,21 @@ services:
 
 before_install:
   # first build image to run test
-  - docker build -t docker-k8s-course/fib-calculator-client-test -f ./client/Dockerfile.dev ./client
+  - docker build -t dockerk8scourse/fib-calculator-client-test -f ./client/Dockerfile.dev ./client
 
 script:
   # run test on the image built above
-  - docker run docker-k8s-course/fib-calculator-client-test npm test -- --coverage
+  - docker run dockerk8scourse/fib-calculator-client-test npm test -- --coverage
 
 after_success:
   # build prod images for each container
-  - docker build -t docker-k8s-course/fib-calculator-client ./client
-  - docker build -t docker-k8s-course/fib-calculator-nginx ./nginx
-  - docker build -t docker-k8s-course/fib-calculator-server ./server
-  - docker build -t docker-k8s-course/fib-calculator-worker ./worker
+  - docker build -t dockerk8scourse/fib-calculator-client ./client
+  - docker build -t dockerk8scourse/fib-calculator-nginx ./nginx
+  - docker build -t dockerk8scourse/fib-calculator-server ./server
+  - docker build -t dockerk8scourse/fib-calculator-worker ./worker
   # push images to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push docker-k8s-course/fib-calculator-client
-  - docker push docker-k8s-course/fib-calculator-nginx
-  - docker push docker-k8s-course/fib-calculator-server
-  - docker push docker-k8s-course/fib-calculator-worker
+  - docker push dockerk8scourse/fib-calculator-client
+  - docker push dockerk8scourse/fib-calculator-nginx
+  - docker push dockerk8scourse/fib-calculator-server
+  - docker push dockerk8scourse/fib-calculator-worker
